@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Ujian Mandiri (Fixed)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="start-screen" class="screen-container">
+        <div class="dashboard-card">
+            <div class="logo-area">
+                <img src="assets/logo.png" alt="Logo UT" class="main-logo" onerror="this.style.display='none'">
+                <h1>Ujian Mandiri</h1>
+                <p>Universitas Terbuka - Simulasi CAT</p>
+            </div>
+
+            <div class="selection-area">
+                <p class="label-pilih">Pilih Mata Kuliah:</p>
+                
+                <div class="subject-grid">
+                    <div class="subject-card active" onclick="selectSubject('basisdata', this)">
+                        <span class="icon">🗄️</span>
+                        <div class="info"><h3>Basis Data</h3><p>60 Soal</p></div>
+                        <div class="check">✓</div>
+                    </div>
+                    <div class="subject-card" onclick="selectSubject('analisisdata', this)">
+                        <span class="icon">📊</span>
+                        <div class="info"><h3>Analisis Data</h3><p>155 Soal</p></div>
+                        <div class="check">✓</div>
+                    </div>
+                    <div class="subject-card" onclick="selectSubject('algoritma', this)">
+                        <span class="icon">💻</span>
+                        <div class="info"><h3>Algoritma</h3><p>45 Soal</p></div>
+                        <div class="check">✓</div>
+                    </div>
+                    <div class="subject-card" onclick="selectSubject('prosesbisnis', this)">
+                        <span class="icon">🏭</span>
+                        <div class="info"><h3>Proses Bisnis</h3><p>50 Soal</p></div>
+                        <div class="check">✓</div>
+                    </div>
+                    <div class="subject-card" onclick="selectSubject('sim', this)">
+                        <span class="icon">📡</span>
+                        <div class="info"><h3>Sistem Info. Manajemen</h3><p>50 Soal</p></div>
+                        <div class="check">✓</div>
+                    </div>
+                    <div class="subject-card" onclick="selectSubject('kewirausahaan', this)">
+                        <span class="icon">🚀</span>
+                        <div class="info"><h3>Kewirausahaan</h3><p>50 Soal</p></div>
+                        <div class="check">✓</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-start" onclick="startQuiz()">MULAI LATIHAN</button>
+        </div>
+    </div>
+
+    <div class="header-bar">
+        <div class="header-left">
+            <img src="assets/logo.png" alt="UT" class="small-logo" onerror="this.style.display='none'">
+            <div class="subject-info">
+                <span class="label-cat">Simulasi Ujian</span>
+                <span class="subject-name" id="active-subject-name">Mata Kuliah</span>
+            </div>
+        </div>
+        <div class="timer-container">
+            <span id="timer">00:00</span>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="question-area">
+            <div class="q-header">
+                Soal No. <span id="q-number-display">1</span>
+            </div>
+            
+            <div id="question-text" class="q-text">Memuat Soal...</div>
+            
+            <div id="options-container" class="options-list"></div>
+            
+            <div id="explanation-box" class="explanation-box">
+                <div class="exp-header">💡 Pembahasan:</div>
+                <div id="explanation-text" class="exp-content"></div>
+            </div>
+
+            <div class="control-bar">
+                <button class="btn btn-prev" id="btn-prev" onclick="prevQuestion()">❮ Sebelumnya</button>
+                <button class="btn btn-next" id="btn-next" onclick="nextQuestion()">Selanjutnya ❯</button>
+            </div>
+        </div>
+
+        <div class="nav-sidebar">
+            <div class="nav-header">Navigasi Soal</div>
+            <div class="nav-grid-container">
+                <div class="nav-grid" id="nav-grid"></div>
+            </div>
+            <div class="nav-legend">
+                <div><span class="dot white"></span> Belum</div>
+                <div><span class="dot green"></span> Benar</div>
+                <div><span class="dot red"></span> Salah</div>
+                <div><span class="dot yellow"></span> Aktif</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="result-screen" class="screen-container hidden">
+        <div class="result-card">
+            <h2>Hasil Latihan</h2>
+            <h3 id="result-subject" style="color:#64748b;">Mata Kuliah</h3>
+            
+            <div class="score-box">
+                <span id="final-score">0</span>
+                <small>Nilai Akhir</small>
+            </div>
+
+            <p>Jawaban Benar: <strong id="correct-count">0</strong> dari <span id="total-count-result">0</span></p>
+            <p id="feedback-msg"></p>
+            
+            <button class="btn-start" onclick="location.reload()">Kembali ke Menu</button>
+        </div>
+    </div>
+
+    <script src="data_soal/basis_data.js"></script>
+    <script src="data_soal/analisis_data.js"></script>
+    <script src="data_soal/algoritma.js"></script>
+    <script src="data_soal/proses_bisnis.js"></script>
+    <script src="data_soal/sim.js"></script>
+    <script src="data_soal/kewirausahaan.js"></script>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
